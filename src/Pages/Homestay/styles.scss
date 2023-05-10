@@ -1,0 +1,35 @@
+.contacts {
+    display: flex;
+    p {
+        font-weight: 700;
+        font-size: 14px;
+        color: gray;
+        margin-right: 20px;
+    }
+    i {
+        margin-right: 5px;
+    }
+}
+
+.homestayDescription {
+    margin: 0 25%;
+    h1 {
+        margin-bottom: 0;
+        font-size: 36px;
+    }
+    .type {
+        margin-top: 15px;
+        font-weight: 700;
+        i {
+            margin-left: 10px;
+        }
+    }
+    .price {
+        font-size: 18px;
+        font-weight: 900;
+    }
+    .priceValue {
+        font-size: 24px;
+        font-weight: 900;
+    }
+}

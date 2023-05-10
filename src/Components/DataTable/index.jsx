@@ -25,7 +25,7 @@ export default function DataTable({ jsonData }) {
                     </div>
                 </div>
                 <ImageList cols={2} style={{ width: '25%', margin: 0 }}>
-                    {row.images.split('^^').map((item) => (
+                    {row.images.split('^^').slice(0, 4).map((item) => (
                         <ImageListItem key={item}>
                         <img
                             src={`${item}?w=164&h=164&fit=crop&auto=format`}
