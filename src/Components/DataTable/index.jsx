@@ -1,24 +1,16 @@
 import * as React from 'react';
-import { csvFileToJSON } from '../../ulits';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Chip from '@mui/material/Chip';
 import './styles.scss';
+import { useNavigate } from "react-router-dom";
 
-export default function DataTable() {
-  const [jsonData, setJsonData] = React.useState([]);
-  React.useEffect(() => {
-    fetch( './data.csv' )
-    .then( response => response.text() )
-    .then( responseText => {
-        setJsonData(csvFileToJSON(responseText));
-    })
-  }, []);
-
+export default function DataTable({ jsonData }) {
+   const navigate = useNavigate();
   return (
     <>
         {jsonData.map((row) => (
-            <div className='card'>
+            <div className='card' onClick={() => navigate(`/homestay/${row.name}`, { state: row })}>
                 <div style={{ width: '75%' }}>
                     <div>
                         <h2 style={{ marginTop: 0 }}>{row.name}</h2>
