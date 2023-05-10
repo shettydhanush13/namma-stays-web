@@ -19,19 +19,21 @@ export default function DataTable() {
     <>
         {jsonData.map((row) => (
             <div className='card'>
-                <div style={{ width: '30%' }}>
-                    <h2>{row.name}</h2>
-                    <h3>{row.accomodationType}</h3>
-                    <h4>{row.location}</h4>
-                    <h4>Strating from ₹{row.price}</h4>
+                <div style={{ width: '75%' }}>
+                    <div>
+                        <h2 style={{ marginTop: 0 }}>{row.name}</h2>
+                        <h3>{row.accomodationType}</h3>
+                        <h4>{row.location}</h4>
+                        <h4>Strating from ₹{row.price}</h4>
+                    </div>
+                    <div>
+                        {row.amenities.split('^^').map((amenity) => {
+                            return <Chip style={{ margin: '10px 5px 0 0' }} label={amenity} variant="outlined" />
+                        })}
+                    </div>
                 </div>
-                <div style={{ width: '45%', padding: '20px 0' }}>
-                    {row.amenities.split("-").map((amenity) => {
-                        return <Chip style={{ margin: '0 5px 10px 0' }} label={amenity} variant="outlined" />
-                    })}
-                </div>
-                <ImageList cols={2} rowHeight={164} style={{ width: '25%' }}>
-                    {[row.images,row.images].map((item) => (
+                <ImageList cols={2} style={{ width: '25%', margin: 0 }}>
+                    {row.images.split('^^').map((item) => (
                         <ImageListItem key={item}>
                         <img
                             src={`${item}?w=164&h=164&fit=crop&auto=format`}
