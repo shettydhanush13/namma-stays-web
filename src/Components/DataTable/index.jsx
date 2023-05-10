@@ -1,12 +1,9 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { csvFileToJSON } from '../../ulits';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import Chip from '@mui/material/Chip';
+import './styles.scss';
 
 export default function DataTable() {
   const [jsonData, setJsonData] = React.useState([]);
@@ -17,35 +14,36 @@ export default function DataTable() {
         setJsonData(csvFileToJSON(responseText));
     })
   }, []);
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Stay</TableCell>
-            <TableCell align="right">Location</TableCell>
-            <TableCell align="right">Phone</TableCell>
-            <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Website</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {jsonData.map((row) => (
-            <TableRow
-              key={row.stay}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.stay}
-              </TableCell>
-              <TableCell align="right">{row.location}</TableCell>
-              <TableCell align="right">{row.phone}</TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">{row.web}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+        {jsonData.map((row) => (
+            <div className='card'>
+                <div style={{ width: '30%' }}>
+                    <h2>{row.name}</h2>
+                    <h3>{row.accomodationType}</h3>
+                    <h4>{row.location}</h4>
+                    <h4>Strating from ₹{row.price}</h4>
+                </div>
+                <div style={{ width: '45%', padding: '20px 0' }}>
+                    {row.amenities.split("-").map((amenity) => {
+                        return <Chip style={{ margin: '0 5px 10px 0' }} label={amenity} variant="outlined" />
+                    })}
+                </div>
+                <ImageList cols={2} rowHeight={164} style={{ width: '25%' }}>
+                    {[row.images,row.images].map((item) => (
+                        <ImageListItem key={item}>
+                        <img
+                            src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                            srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                            alt={item}
+                            loading="lazy"
+                        />
+                        </ImageListItem>
+                    ))}
+                </ImageList>
+            </div>
+        ))}
+    </>
   );
 }

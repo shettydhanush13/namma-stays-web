@@ -22,6 +22,7 @@ const csvFileToJSON = (file) => {
                   jsonData.push(rowData);
               }
           }
+          console.log(jsonData);
           return jsonData;
           //displaying the json result in string format
       }catch(e){
