@@ -11,7 +11,7 @@ export default function Filters() {
             id="combo-box-demo"
             options={['All', 'Udupi', 'Kundapura']}
             value="All"
-            sx={{ width: 300,  marginRight: 2 }}
+            className='locationFilter'
             renderInput={(params) => <TextField {...params} label="Filter by location" />}
         />
     </section>

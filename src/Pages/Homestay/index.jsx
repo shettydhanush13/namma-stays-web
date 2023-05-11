@@ -21,7 +21,7 @@ const Homestay = () => {
                 <i className="fa fa-map-marker"/>
             </a>
         </p>
-        <p className='price'>Starts from <span className='priceValue'>₹{state.price}</span></p>
+        <p className='price'>Starts from <span className='priceValue'>₹ {state.price}</span></p>
         <ImageList cols={3} style={{ width: '100%', margin: 0 }}>
             {state.images.split('^^').map((item) => (
                 <ImageListItem key={item}>
@@ -36,7 +36,7 @@ const Homestay = () => {
         </ImageList>
         <br />
         {state.amenities.split('^^').map((amenity) => {
-            return <Chip style={{ margin: '10px 5px 10px 0' }} label={amenity} variant="outlined" />
+            return <Chip style={{ margin: '10px 5px 10px 0' }} label={amenity} />
         })}
     </section>
     </>

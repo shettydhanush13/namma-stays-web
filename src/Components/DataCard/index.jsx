@@ -5,26 +5,28 @@ import Chip from '@mui/material/Chip';
 import './styles.scss';
 import { useNavigate } from "react-router-dom";
 
-export default function DataTable({ jsonData }) {
+export default function DataCard({ jsonData }) {
    const navigate = useNavigate();
   return (
     <>
         {jsonData.map((row) => (
-            <div className='card' onClick={() => navigate(`/homestay/${row.name}`, { state: row })}>
-                <div style={{ width: '75%' }}>
+            <div className='dataCard' onClick={() => navigate(`/homestay/${row.name}`, { state: row })}>
+                <div className='cardInfo'>
                     <div>
-                        <h2 style={{ marginTop: 0 }}>{row.name}</h2>
-                        <h3>{row.accomodationType}</h3>
-                        <h4>{row.location}</h4>
-                        <h4>Strating from ₹{row.price}</h4>
+                        <h2 style={{ margin: '0' }}>{row.name}</h2>
+                        <h5 style={{ marginTop: 10 }}>{row.accomodationType.toUpperCase()}</h5>
+                        <div className='location-price-section'>
+                            <h4 className='location-section'><i className="fa fa-map-marker"/>&nbsp;{row.location}</h4>
+                            <h4 className='card-price'>Strating from <b>₹ {row.price}</b></h4>
+                        </div>
                     </div>
                     <div>
                         {row.amenities.split('^^').map((amenity) => {
-                            return <Chip style={{ margin: '10px 5px 0 0' }} label={amenity} variant="outlined" />
+                            return <Chip style={{ margin: '10px 5px 0 0' }} label={amenity}/>
                         })}
                     </div>
                 </div>
-                <ImageList cols={2} style={{ width: '25%', margin: 0 }}>
+                <ImageList className='cardImage' cols={2}>
                     {row.images.split('^^').slice(0, 4).map((item) => (
                         <ImageListItem key={item}>
                         <img
