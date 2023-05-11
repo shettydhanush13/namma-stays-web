@@ -1,7 +1,6 @@
 {
   "name": "nammastays-web",
   "version": "0.1.0",
-  "homepage": "https://shettydhanush13.github.io/namma-stays-web",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.0",

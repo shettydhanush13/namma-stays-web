@@ -6,6 +6,7 @@ import Chip from '@mui/material/Chip';
 import { useLocation } from "react-router-dom";
 
 const Homestay = () => {
+    console.log({ window: window.orientation });
     const { state } = useLocation();
     return <>
     <Header/>
@@ -17,27 +18,30 @@ const Homestay = () => {
             <p><i className="fa fa-globe"/>{state.website}</p>
         </div>
         <p className='type'>
-            <a href={state.map} target="_blank">{state.location}
-                <i className="fa fa-map-marker"/>
-            </a>
+            <a href={state.map} target="_blank" rel="noreferrer"><i className="fa fa-map-marker"/>{state.location}</a>
+            <p className='card-price'>Starts from <span>₹ {state.price}</span></p>
         </p>
         <p className='price'>Starts from <span className='priceValue'>₹ {state.price}</span></p>
-        <ImageList cols={3} style={{ width: '100%', margin: 0 }}>
-            {state.images.split('^^').map((item) => (
-                <ImageListItem key={item}>
-                <img
-                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                    srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    alt={state.name}
-                    loading="lazy"
-                />
-                </ImageListItem>
-            ))}
-        </ImageList>
-        <br />
-        {state.amenities.split('^^').map((amenity) => {
-            return <Chip style={{ margin: '10px 5px 10px 0' }} label={amenity} />
-        })}
+        <div className='image-tag-container'>
+            <ImageList cols={window.orientation > 1 ? 1 : 3} className="imageList">
+                {state.images.split('^^').map((item) => (
+                    <ImageListItem key={item}>
+                    <img
+                        src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt={state.name}
+                        loading="lazy"
+                    />
+                    </ImageListItem>
+                ))}
+            </ImageList>
+            <br />
+            <div>
+                {state.amenities.split('^^').map((amenity) => {
+                    return <Chip className='chip' label={amenity} />
+                })}
+            </div>
+        </div>
     </section>
     </>
 }

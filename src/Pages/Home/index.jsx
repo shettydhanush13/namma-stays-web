@@ -11,6 +11,7 @@ const Home = () => {
         fetch( './data.csv' )
         .then( response => response.text() )
         .then( responseText => {
+            console.log({ responseText });
             setJsonData(csvFileToJSON(responseText));
         })
     }, []);
