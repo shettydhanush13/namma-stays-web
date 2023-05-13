@@ -2,10 +2,12 @@
     height: 70px;
     margin-bottom: 20px;
     background-color: rgb(25, 118, 210);
+    background-color: #fff;
     display: flex;
     align-items: center;
     padding: 0 25px;
-    color: #fff;
+    color:  rgb(25, 118, 210);
+    border-bottom: 1px solid rgba(145,151,163,.2);
     @media (max-width: 767px) {
 		justify-content: center;
         padding: 0;

@@ -16,18 +16,18 @@ export default function DataCard({ jsonData }) {
                         <h2 style={{ margin: '0' }}>{row.name}</h2>
                         <h5 style={{ marginTop: 10 }}>{row.accomodationType.toUpperCase()}</h5>
                         <div className='location-price-section'>
-                            <h4 className='location-section'><i className="fa fa-map-marker"/>&nbsp;{row.location}</h4>
-                            <h4 className='card-price'>Strating from <b>₹ {row.price}</b></h4>
+                            <h4 className='location-section'><i className="fa fa-map-marker"/>&nbsp;{row.region}</h4>
+                            <h4 className='card-price'>{row.price}</h4>
                         </div>
                     </div>
                     <div>
-                        {row.amenities.split('^^').map((amenity) => {
+                        {row.amenities.map((amenity) => {
                             return <Chip style={{ margin: '10px 5px 0 0' }} label={amenity}/>
                         })}
                     </div>
                 </div>
                 <ImageList className='cardImage' cols={2}>
-                    {row.images.split('^^').slice(0, 4).map((item) => (
+                    {row.images.slice(0, 4).map((item) => (
                         <ImageListItem key={item}>
                         <img
                             src={`${item}?w=164&h=164&fit=crop&auto=format`}
